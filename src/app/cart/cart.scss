@@ -1,0 +1,84 @@
+:host {
+  display: block;
+  padding: 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.title {
+  font-size: 1.2rem;
+  margin: 0 0 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--border);
+}
+
+.empty {
+  color: var(--muted);
+  text-align: center;
+  padding: 1.5rem 0;
+  margin: 0;
+}
+
+.items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.name {
+  flex: 1;
+  font-weight: 600;
+}
+
+.qty {
+  display: flex;
+  align-items: center;
+
+  span {
+    min-width: 1.5rem;
+    text-align: center;
+  }
+}
+
+.qty-static {
+  color: var(--muted);
+}
+
+.price {
+  min-width: 4.5rem;
+  text-align: right;
+}
+
+.delete {
+  color: var(--danger);
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 2px dashed var(--border);
+  font-size: 1.2rem;
+
+  strong {
+    color: var(--primary);
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}

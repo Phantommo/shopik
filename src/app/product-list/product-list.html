@@ -1,0 +1,7 @@
+<h2 class="title">Produkty</h2>
+
+<div class="grid">
+  @for (product of products(); track product.id) {
+    <app-product-item [product]="product" (add)="onAdd($event)" />
+  }
+</div>

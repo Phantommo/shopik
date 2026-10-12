@@ -1,0 +1,30 @@
+<mat-toolbar class="toolbar">
+  <a routerLink="/" class="brand">🛒 Sklep</a>
+
+  <nav>
+    <a mat-button routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+      Strona główna
+    </a>
+    <a mat-button routerLink="/cart" routerLinkActive="active">Koszyk</a>
+  </nav>
+
+  <span class="spacer"></span>
+
+  <button
+    mat-icon-button
+    aria-label="Podgląd koszyka"
+    [matMenuTriggerFor]="cartMenu"
+    #trigger="matMenuTrigger"
+    (mouseenter)="trigger.openMenu()"
+  >
+    <mat-icon [matBadge]="cart.count()" [matBadgeHidden]="cart.count() === 0" matBadgeColor="warn">
+      shopping_cart
+    </mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-menu #cartMenu="matMenu" class="cart-menu" xPosition="before">
+  <div class="cart-menu-content" (click)="$event.stopPropagation()">
+    <app-cart [compact]="true" (navigated)="trigger.closeMenu()" />
+  </div>
+</mat-menu>

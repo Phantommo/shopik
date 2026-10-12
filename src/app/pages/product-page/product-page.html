@@ -1,0 +1,41 @@
+@if (product(); as p) {
+  <div class="detail">
+    <div class="zoom" (mousemove)="onMove($event)">
+      <img [src]="p.image" [alt]="p.name">
+    </div>
+
+    <div class="info">
+      <h1>{{ p.name }}</h1>
+      <p class="price">{{ p.price }} zł</p>
+      <p>{{ p.description }}</p>
+
+      <button mat-flat-button (click)="cart.add(p)">
+        <mat-icon>add_shopping_cart</mat-icon>
+        Dodaj do koszyka
+      </button>
+    </div>
+  </div>
+
+  <section class="related">
+    <h2>Pozostałe produkty</h2>
+
+    <swiper-container
+      slides-per-view="1.15"
+      space-between="16"
+      navigation="true"
+      [breakpoints]="breakpoints"
+    >
+      @for (other of others(); track other.id) {
+        <swiper-slide>
+          <a class="slide" [routerLink]="['/product', other.id]">
+            <img [src]="other.image" [alt]="other.name">
+            <h3>{{ other.name }}</h3>
+            <p>{{ other.price }} zł</p>
+          </a>
+        </swiper-slide>
+      }
+    </swiper-container>
+  </section>
+} @else {
+  <p>Nie znaleziono produktu. <a routerLink="/">Wróć do sklepu</a></p>
+}

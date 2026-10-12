@@ -1,0 +1,15 @@
+.product {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+  }
+}
+
+img {
+  height: 160px; 
+  width: 200px;      
+  padding: 25px;
+  object-fit: cover;
+}

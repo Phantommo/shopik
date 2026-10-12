@@ -1,0 +1,13 @@
+<mat-card class="product" appearance="outlined">
+  <a [routerLink]="['/product', product().id]">
+    <img mat-card-image [src]="product().image" [alt]="product().name" />
+  </a>
+  <mat-card-header>
+    <mat-card-title>{{ product().name }}</mat-card-title>
+    <mat-card-subtitle>{{ product().price }} zł</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-actions>
+    <a mat-button [routerLink]="['/product', product().id]">Szczegóły</a>
+    <button mat-flat-button (click)="onAddClick()">Dodaj do koszyka</button>
+  </mat-card-actions>
+</mat-card>

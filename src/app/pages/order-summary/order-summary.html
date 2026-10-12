@@ -1,0 +1,29 @@
+@if (order(); as o) {
+  <mat-card class="summary" appearance="outlined">
+    <mat-card-header>
+      <mat-icon class="ok">check_circle</mat-icon>
+      <mat-card-title>Dziękujemy za zamówienie!</mat-card-title>
+      <mat-card-subtitle>Numer zamówienia: #{{ o.id }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <p>
+        {{ o.customer.firstName }} {{ o.customer.lastName }}<br />
+        {{ o.customer.address }}, {{ o.customer.postalCode }} {{ o.customer.city }}
+      </p>
+
+      <ul>
+        @for (item of o.items; track item.product.id) {
+          <li>{{ item.product.name }} × {{ item.quantity }}: {{ item.product.price * item.quantity }} zł</li>
+        }
+      </ul>
+
+      <p><strong>RAZEM {{ o.total }} zł</strong></p>
+      <p>Forma płatności: {{ labels[o.paymentMethod] }}</p>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <a mat-flat-button routerLink="/">Wróć do sklepu</a>
+    </mat-card-actions>
+  </mat-card>
+}

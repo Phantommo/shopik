@@ -1,0 +1,49 @@
+<h2 class="title">KOSZYK</h2>
+
+@if (cart.items().length === 0) {
+  <p class="empty">Koszyk jest pusty.</p>
+} @else {
+  <ul class="items">
+    @for (item of cart.items(); track item.product.id) {
+      <li class="item">
+        <span class="name">{{ item.product.name }}</span>
+
+        @if (readonly()) {
+          <span class="qty-static">× {{ item.quantity }}</span>
+        } @else {
+          <div class="qty">
+            <button mat-icon-button aria-label="Zmniejsz ilość" (click)="cart.decrease(item.product.id)">
+              <mat-icon>remove</mat-icon>
+            </button>
+            <span>{{ item.quantity }}</span>
+            <button mat-icon-button aria-label="Zwiększ ilość" (click)="cart.increase(item.product.id)">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+        }
+
+        <span class="price">{{ item.product.price * item.quantity }} zł</span>
+
+        @if (!readonly()) {
+          <button mat-icon-button class="delete" aria-label="Usuń" (click)="cart.remove(item.product.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        }
+      </li>
+    }
+  </ul>
+
+  <div class="total">
+    <span>RAZEM</span>
+    <strong>{{ cart.total() }} zł</strong>
+  </div>
+
+  @if (!readonly()) {
+    <div class="actions">
+      @if (compact()) {
+        <a mat-stroked-button routerLink="/cart" (click)="navigated.emit()">Zobacz koszyk</a>
+      }
+      <button mat-flat-button (click)="goToCheckout()">Do płatności</button>
+    </div>
+  }
+}
